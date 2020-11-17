@@ -13,6 +13,15 @@ class App extends React.Component {
     this.fetchDog();
   }
 
+  shouldComponentUpdate(_nextProps, nextState) {
+    if (nextState.data.message.includes("terrier")) {
+      console.log(nextState.data.message)
+      return false;
+    }
+    console.log(nextState.data.message)
+    return true;
+  }
+
   fetchDog() {
     fetch("https://dog.ceo/api/breeds/image/random")
       .then(res => res.json())
